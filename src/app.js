@@ -1,5 +1,6 @@
-import { OrbitControls } from '../../node_modules/three/examples/jsm/controls/OrbitControls.js';
-import Stats from '../../node_modules/three/examples/jsm/libs/stats.module.js';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import Stats from 'three/examples/jsm/libs/stats.module';
 
 let cameraPositionX = 0;
 let cameraPositionY = 0;
@@ -98,7 +99,6 @@ renderer.shadowMap.enabled = false;
 /* CONTROLS */
 // controls
 var controls = new OrbitControls( camera, renderer.domElement );
-console.log('controls', controls);
 controls.maxPolarAngle = Math.PI * 0.5;
 controls.minDistance = 100;
 controls.maxDistance = 500;
