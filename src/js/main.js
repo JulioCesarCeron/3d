@@ -107,6 +107,11 @@ window.addEventListener('click', () => console.log("controls", controls));
 /* CONTROLS */
 
 
+/* STATS */
+const stats = new Stats();
+document.body.appendChild( stats.dom );
+/* STATS */
+
 /* ANIMATION */
 let clock = new THREE.Clock();
 let animate = function () {
@@ -118,7 +123,6 @@ let animate = function () {
   cube.rotation.y += (delta * 0.5);
 	cube.rotation.x += (delta * 0.5);
 	cube.rotation.y += (dir * delta);
-	cube.rotation.x += (dir * delta);
 	if( cube.position.x > 2 ) {
 		dir = -1;
 	} else if ( cube.position.x < -2) {
@@ -127,6 +131,7 @@ let animate = function () {
 
 	controls.update();
 	renderer.render( scene, camera );
+	stats.update()
 };
 
 animate();
