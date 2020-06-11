@@ -24,11 +24,10 @@ let clock = new THREE.Clock();
 
 
 const onWindowResize = () => {
-	windowHalfX = window.innerWidth / 2;
-	windowHalfY = window.innerHeight / 2;
-	camera.aspect = window.innerWidth / window.innerHeight;
-	camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight);
+	camera.aspect = window.innerWidth / window.innerHeight;
+	
+	camera.updateProjectionMatrix();
 }
 
 window.addEventListener( 'resize', onWindowResize, false );
@@ -39,9 +38,10 @@ let animate = function () {
 
 	let delta = clock.getDelta();
 
-	 mesh.rotation.y += delta * 0.5;	
-	// mesh.rotation.x += delta * 0.5;
-	// mesh.rotation.y += dir * delta;
+	mesh.rotation.y += (delta * 0.5);
+	mesh.rotation.x += (delta * 0.5);
+	mesh.rotation.y += (dir * delta);
+	mesh.rotation.x += (dir * delta);
 	if( mesh.position.x > 2 ) {
 		dir = -1;
 	} else if ( mesh.position.x < -2) {
@@ -52,3 +52,7 @@ let animate = function () {
 };
 
 animate();
+
+
+const teste = new TweenMax();
+console.log('teste', teste);
