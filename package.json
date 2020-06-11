@@ -1,0 +1,27 @@
+{
+  "name": "3d-pipes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulioCesarCeron/3d.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JulioCesarCeron/3d/issues"
+  },
+  "homepage": "https://github.com/JulioCesarCeron/3d#readme",
+  "dependencies": {
+    "gsap": "^3.3.1",
+    "three": "^0.117.1"
+  },
+  "devDependencies": {
+    "threejs-utils": "^0.1.3"
+  }
+}
