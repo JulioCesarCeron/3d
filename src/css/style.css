@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  height: 90vh;
+}
+
+canvas {
+  display: block;
+}
+
+.image-background {
+	background: url('../media/dog.jpg');
+}
