@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import Stats from 'three/examples/jsm/libs/stats.module';
 import './css/style.css';
+import DogImagePath from './media/dog.jpg';
 
 let cameraPositionX = 0;
 let cameraPositionY = 0;
@@ -137,3 +138,7 @@ let animate = function () {
 
 animate();
 /* ANIMATION */
+
+const dog = new Image();
+dog.src = DogImagePath
+document.body.appendChild(dog);

@@ -6,3 +6,7 @@ body {
 canvas {
   display: block;
 }
+
+.image-background {
+	background: url('../media/dog.jpg');
+}
