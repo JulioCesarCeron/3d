@@ -140,4 +140,6 @@ animate();
 /* ANIMATION */
 
 
-printMe();
+setTimeout(() => {
+	printMe();
+}, 3000);
