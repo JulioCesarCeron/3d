@@ -3,13 +3,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-	mode: 'production',
+	mode: 'development',
+	watch: true,
 	entry: {
 		app: './src/app.js',
 		print: './src/print.js',
 	},
+	devtool: 'inline-source-map',
+	devServer: {
+		contentBase: './dist',
+	},
 	plugins: [
-		new CleanWebpackPlugin(),
+		new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
 		new HtmlWebpackPlugin({
 			title: 'Output Management',
 		}),
