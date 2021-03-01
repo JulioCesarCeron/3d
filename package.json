@@ -21,7 +21,7 @@
   "homepage": "https://github.com/JulioCesarCeron/3d#readme",
   "dependencies": {
     "gsap": "^3.6.0",
-    "three": "^0.117.1"
+    "three": "^0.125.0"
   },
   "devDependencies": {
     "threejs-utils": "^0.1.3",
