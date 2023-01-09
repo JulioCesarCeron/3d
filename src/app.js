@@ -1,138 +1,129 @@
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import Stats from 'three/examples/jsm/libs/stats.module';
+import {
+	PerspectiveCamera,
+	Scene,
+	Color,
+	Fog,
+	AmbientLight,
+	WebGLRenderer,
+	sRGBEncoding,
+	Clock,
+} from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import Stats from "three/examples/jsm/libs/stats.module";
+import "./css/style.css";
+import printMe from "./print";
+import Cube from "./obejcts/cube/cube";
+import sphere from "./obejcts/sphere/sphere";
+import defaultLight from "./lights/defaultLight";
 
-let cameraPositionX = 0;
-let cameraPositionY = 0;
-let cameraPositionZ = 190;
+const cameraPosition = {
+	x: 0,
+	y: 0,
+	z: 180,
+};
 
-let cameraLookAtX = 0;
-let cameraLookAtY = 0;
-let cameraLookAtZ = 0;
-let mouseMoveCamera = false;
+const cameraLookAt = {
+	x: 0,
+	y: 0,
+	z: 0,
+};
 
 /* CAMERA */
-let camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(cameraPositionX, cameraPositionY, cameraPositionZ);
-camera.lookAt(cameraLookAtX, cameraLookAtY, cameraLookAtZ);
+let camera = new PerspectiveCamera(
+	40,
+	window.innerWidth / window.innerHeight,
+	0.1,
+	1000
+);
+camera.position.set(cameraPosition.x, cameraPosition.y, cameraPosition.z);
+camera.lookAt(cameraLookAt.x, cameraLookAt.y, cameraLookAt.z);
 /* CAMERA */
 
 /* SCENE */
-let scene = new THREE.Scene();
-scene.background = new THREE.Color( 0x111111 );
-scene.fog = new THREE.Fog(0x111111, 150, 200);
+let scene = new Scene();
+scene.background = new Color(0x111111);
+scene.fog = new Fog(0x111111, 150, 200);
 /* SCENE */
 
-
 /* LIGHTS */
-scene.add( new THREE.AmbientLight( 0x666666 ) );
+scene.add(new AmbientLight(0x666666));
 
-const light = new THREE.DirectionalLight( 0xdfebff, 1 );
-light.position.set( 50, 200, 100 );
-light.position.multiplyScalar( 1.3 );
-light.castShadow = false;
-light.shadow.mapSize.width = 1024;
-light.shadow.mapSize.height = 1024;
-
-const d = 300;
-
-light.shadow.camera.left = - d;
-light.shadow.camera.right = d;
-light.shadow.camera.top = d;
-light.shadow.camera.bottom = - d;
-
-light.shadow.camera.far = 1000;
-
-scene.add( light );
+scene.add(defaultLight);
 /* LIGHTS */
 
-/*********** 
- * OBJECTS *
+/***********
+ * ADD OBJECTS TO SCENE *
  ***********/
 
-/* CUBE */
-let cubeMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-let cubeGeometry = new THREE.CubeGeometry(20, 20, 20);
-let cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cube.position.set(-30, 0, 0);
-
-scene.add(cube);
-/* CUBE */
-
-/* SPHERE */
-let sphereGeometry = new THREE.SphereGeometry(20, 110, 20);
-let sphereMaterial = new THREE.MeshLambertMaterial({ color: 0x2b85e4 });
-let sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-sphere.position.set(30, 0, 0);
-
+scene.add(Cube);
 scene.add(sphere);
-/* SPHERE */
 
-/*********** 
- * OBJECTS *
+/***********
+ * ADD OBJECTS TO SCENE *
  ***********/
-
 
 /* EVENT RESIZE */
 const onWindowResize = () => {
-	renderer.setSize( window.innerWidth, window.innerHeight);
+	renderer.setSize(window.innerWidth, window.innerHeight);
 	camera.aspect = window.innerWidth / window.innerHeight;
-	
-	camera.updateProjectionMatrix();
-}
 
-window.addEventListener('resize', onWindowResize, false );
+	camera.updateProjectionMatrix();
+};
+
+window.addEventListener("resize", onWindowResize, false);
 /* EVENT RESIZE */
 
-
 /* RENDERER */
-let renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setPixelRatio( window.devicePixelRatio );
+let renderer = new WebGLRenderer({ antialias: true, precision: "highp" });
+renderer.setPixelRatio(window.devicePixelRatio);
 
-renderer.setSize( window.innerWidth, window.innerHeight);
-document.body.appendChild( renderer.domElement );
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.outputEncoding = sRGBEncoding;
 renderer.shadowMap.enabled = false;
 /* RENDERER */
 
 /* CONTROLS */
 // controls
-var controls = new OrbitControls( camera, renderer.domElement );
+var controls = new OrbitControls(camera, renderer.domElement);
 controls.maxPolarAngle = Math.PI * 0.5;
 controls.minDistance = 100;
 controls.maxDistance = 500;
 
-window.addEventListener('click', () => console.log("controls", controls));
+window.addEventListener("click", () => console.log("controls", controls));
 /* CONTROLS */
-
 
 /* STATS */
 const stats = new Stats();
-document.body.appendChild( stats.dom );
+document.body.appendChild(stats.dom);
 /* STATS */
 
 /* ANIMATION */
-let clock = new THREE.Clock();
+let clock = new Clock();
 let animate = function () {
 	let dir = 1;
-	requestAnimationFrame( animate );
+	requestAnimationFrame(animate);
 
 	let delta = clock.getDelta();
 
-  cube.rotation.y += (delta * 0.5);
-	cube.rotation.x += (delta * 0.5);
-	cube.rotation.y += (dir * delta);
-	if( cube.position.x > 2 ) {
+	Cube.rotation.y += delta * 0.5;
+	Cube.rotation.x += delta * 0.5;
+	Cube.rotation.y += dir * delta;
+	if (Cube.position.x > 2) {
 		dir = -1;
-	} else if ( cube.position.x < -2) {
+	} else if (Cube.position.x < -2) {
 		dir = 1;
 	}
 
 	controls.update();
-	renderer.render( scene, camera );
-	stats.update()
+	renderer.render(scene, camera);
+	stats.update();
 };
 
 animate();
 /* ANIMATION */
+
+setTimeout(() => {
+	printMe();
+}, 3000);
