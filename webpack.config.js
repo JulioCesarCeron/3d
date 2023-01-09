@@ -1,37 +1,33 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-	mode: 'development',
+	mode: "development",
 	watch: true,
 	entry: {
-		app: './src/app.js',
-		print: './src/print.js',
+		app: "./src/app.js",
 	},
-	devtool: 'inline-source-map',
+	devtool: "inline-source-map",
 	devServer: {
-		contentBase: './dist',
+		contentBase: "./dist",
 	},
 	plugins: [
 		new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
 		new HtmlWebpackPlugin({
-			title: 'Output Management',
+			title: "Output Management",
 		}),
 	],
-  output: {
-		filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, 'dist'),
+	output: {
+		filename: "[name].[contenthash].js",
+		path: path.resolve(__dirname, "dist"),
 	},
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ],
+	module: {
+		rules: [
+			{
+				test: /\.css$/,
+				use: ["style-loader", "css-loader"],
 			},
-		]
-	}
+		],
+	},
 };

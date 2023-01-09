@@ -11,7 +11,6 @@ import {
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Stats from "three/examples/jsm/libs/stats.module";
 import "./css/style.css";
-import printMe from "./print";
 import Cube from "./obejcts/cube/cube";
 import sphere from "./obejcts/sphere/sphere";
 import defaultLight from "./lights/defaultLight";
@@ -101,7 +100,3 @@ let animate = function () {
 
 animate();
 /* ANIMATION */
-
-setTimeout(() => {
-	printMe();
-}, 3000);
