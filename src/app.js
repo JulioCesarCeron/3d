@@ -15,29 +15,7 @@ import printMe from "./print";
 import Cube from "./obejcts/cube/cube";
 import sphere from "./obejcts/sphere/sphere";
 import defaultLight from "./lights/defaultLight";
-
-const cameraPosition = {
-	x: 0,
-	y: 0,
-	z: 180,
-};
-
-const cameraLookAt = {
-	x: 0,
-	y: 0,
-	z: 0,
-};
-
-/* CAMERA */
-let camera = new PerspectiveCamera(
-	40,
-	window.innerWidth / window.innerHeight,
-	0.1,
-	1000
-);
-camera.position.set(cameraPosition.x, cameraPosition.y, cameraPosition.z);
-camera.lookAt(cameraLookAt.x, cameraLookAt.y, cameraLookAt.z);
-/* CAMERA */
+import Camera from "./Camera";
 
 /* SCENE */
 let scene = new Scene();
@@ -65,9 +43,9 @@ scene.add(sphere);
 /* EVENT RESIZE */
 const onWindowResize = () => {
 	renderer.setSize(window.innerWidth, window.innerHeight);
-	camera.aspect = window.innerWidth / window.innerHeight;
+	Camera.aspect = window.innerWidth / window.innerHeight;
 
-	camera.updateProjectionMatrix();
+	Camera.updateProjectionMatrix();
 };
 
 window.addEventListener("resize", onWindowResize, false);
@@ -86,7 +64,7 @@ renderer.shadowMap.enabled = false;
 
 /* CONTROLS */
 // controls
-var controls = new OrbitControls(camera, renderer.domElement);
+var controls = new OrbitControls(Camera, renderer.domElement);
 controls.maxPolarAngle = Math.PI * 0.5;
 controls.minDistance = 100;
 controls.maxDistance = 500;
@@ -117,7 +95,7 @@ let animate = function () {
 	}
 
 	controls.update();
-	renderer.render(scene, camera);
+	renderer.render(scene, Camera);
 	stats.update();
 };
 
