@@ -15,25 +15,20 @@ import Cube from "./obejcts/cube/cube";
 import sphere from "./obejcts/sphere/sphere";
 import defaultLight from "./lights/defaultLight";
 import Camera from "./Camera";
-
-/* SCENE */
-let scene = new Scene();
-scene.background = new Color(0x111111);
-scene.fog = new Fog(0x111111, 150, 200);
-/* SCENE */
+import SceneCustom from "./scene";
 
 /* LIGHTS */
-scene.add(new AmbientLight(0x666666));
+SceneCustom.add(new AmbientLight(0x666666));
 
-scene.add(defaultLight);
+SceneCustom.add(defaultLight);
 /* LIGHTS */
 
 /***********
  * ADD OBJECTS TO SCENE *
  ***********/
 
-scene.add(Cube);
-scene.add(sphere);
+SceneCustom.add(Cube);
+SceneCustom.add(sphere);
 
 /***********
  * ADD OBJECTS TO SCENE *
@@ -94,7 +89,7 @@ let animate = function () {
 	}
 
 	controls.update();
-	renderer.render(scene, Camera);
+	renderer.render(SceneCustom, Camera);
 	stats.update();
 };
 
