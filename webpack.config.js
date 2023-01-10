@@ -15,7 +15,9 @@ module.exports = {
 	plugins: [
 		new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
 		new HtmlWebpackPlugin({
-			title: "Output Management",
+			title: "3d",
+			minify: true,
+			showErrors: true,
 		}),
 	],
 	output: {
