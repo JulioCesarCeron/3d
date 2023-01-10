@@ -14,11 +14,7 @@ module.exports = {
 	},
 	plugins: [
 		new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
-		new HtmlWebpackPlugin({
-			title: "3d",
-			minify: true,
-			showErrors: true,
-		}),
+		new HtmlWebpackPlugin({ title: "3d", minify: true }),
 	],
 	output: {
 		filename: "[name].[contenthash].js",
