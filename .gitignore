@@ -10,7 +10,7 @@
 
 # production
 build
-!dist/index.html
+dist/
 
 # misc
 .DS_Store

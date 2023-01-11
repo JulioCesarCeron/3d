@@ -1,4 +1,5 @@
 import onWindowResize from "./window-resize";
+import Controls from "../controls/index";
 
 const events = () => {
 	const { addEventListener } = window;

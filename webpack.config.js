@@ -3,21 +3,27 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-	mode: "development",
-	watch: true,
+	mode: "production",
 	entry: {
 		app: "./src/app.js",
 	},
 	devtool: "inline-source-map",
 	devServer: {
 		contentBase: "./dist",
+		open: {
+			port: 8080,
+		},
 	},
 	plugins: [
 		new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
-		new HtmlWebpackPlugin({ title: "3d", minify: true }),
+		new HtmlWebpackPlugin({
+			favicon: path.resolve(__dirname, "src/assets/favicon/icon.ico"),
+			title: "3d",
+			minify: true,
+		}),
 	],
 	output: {
-		filename: "[name].[contenthash].js",
+		filename: "[contenthash].js",
 		path: path.resolve(__dirname, "dist"),
 	},
 	module: {
