@@ -16,10 +16,14 @@ module.exports = {
 	},
 	plugins: [
 		new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
-		new HtmlWebpackPlugin({ title: "3d", minify: true }),
+		new HtmlWebpackPlugin({
+			favicon: path.resolve(__dirname, "src/assets/favicon/icon.ico"),
+			title: "3d",
+			minify: true,
+		}),
 	],
 	output: {
-		filename: "[name].[contenthash].js",
+		filename: "[contenthash].js",
 		path: path.resolve(__dirname, "dist"),
 	},
 	module: {
